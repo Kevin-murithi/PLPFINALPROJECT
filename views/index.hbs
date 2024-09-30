@@ -1,0 +1,45 @@
+{{>header}}
+
+<main class="indexMain">
+    <h1 class="welcomeTitle">Welcome to the Community-Driven Food Waste Reduction Platform</h1>
+    <p class="welcomeText">Connect with your local community to reduce food waste by sharing surplus food.</p>
+
+    <div class="getStarted">
+        <div class="startHead">
+            <span>Get started</span>
+            <span class="dropSpan">
+                <img src="images/dropdown.svg" alt="dropdown" class="dropDown">
+            </span>
+        </div>
+
+        <div class="authOpts">
+            <a href="/signUp" class="authLink">
+                <span>Personal Account</span>
+                <img src="images/user.svg" alt="user">
+            </a>
+
+            <a href="/bizsignUp" class="authLink">
+                <span>Business Account</span>
+                <img src="images/business.svg" alt="business">
+            </a>
+
+            <a href="/adminSignIn" class="authLink">
+                <span>Admin Account</span>
+                <img src="images/shield.svg" alt="Admin">
+            </a>
+        </div>
+    </div>
+</main>
+
+<script>
+    const startHead = document.querySelector('.startHead');
+    const dropDown = document.querySelector('.dropDown');
+    const authOpts = document.querySelector('.authOpts');
+
+    function openAuthOpts() {
+        authOpts.classList.toggle('show');
+        dropDown.classList.toggle('flip');
+    }
+
+    startHead.onclick = () => openAuthOpts();
+</script>

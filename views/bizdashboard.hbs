@@ -1,0 +1,295 @@
+<section class="dashContainer bizDash">
+  <section class="sidebar">
+    <div class="sideLogo bizLogo">
+      <span>Surplus</span>
+      <img src="images/menu.svg" alt="menu" class="menuOpen">
+      <img src="images/closeMenu.svg" alt="menu" class="menuClose hidden">
+    </div>
+
+    <div class="pageLinks bizPages">
+      <button type="button" data-target="home">
+        <img src="images/dashboard.svg" alt="home">
+        <span>Dashboard</span>
+      </button>
+
+      <button type="button" data-target="donate">
+        <img src="images/donate.svg" alt="donate">
+        <span>Donate</span>
+      </button>
+
+      <button type="button" data-target="tips">
+        <img src="images/tips.svg" alt="tips">
+        <span>Resources/Tips</span>
+      </button>
+
+      <button type="button" data-target="notifications">
+        <img src="images/notifications.svg" alt="notifications">
+        <span>Notifications</span>
+      </button>
+
+      <button type="button" data-target="support">
+        <img src="images/support.svg" alt="support">
+        <span>Support</span>
+      </button>
+
+      <button type="button" data-target="leaderboard">
+        <img src="images/leaderboard.svg" alt="leaderboard">
+        <span>Leaderboard</span>
+      </button>
+
+      <button type="button" data-target="profile">
+        <img src="images/profile.svg" alt="profile">
+        <span>Profile</span>
+      </button>
+
+      <button type="button" data-target="logout">
+        <img src="images/logout.svg" alt="logout">
+        <span>Logout</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="dashBody">
+    <div class="dashHead">
+      <div class="currentPage">
+        Dashboard
+      </div>
+
+      <div class="profileBox bizProfileBox">
+        <img src="images/businessProfile.svg" alt="bizProfile">
+        <span>{{business.name}}</span>
+      </div>
+
+    </div>
+
+    <div class="dashMain bizDashMain">
+      <div class="container home">
+        <div class="mainHomeContent">
+          {{>tableListing}}
+        </div>
+
+        <div class="profileColumn"></div>
+      </div>
+
+      <div class="container donate hidden">
+        {{>donateForm}}
+      </div>
+
+      <div class="container tips hidden">
+        <div class="banner">
+        <h1>Learn How to Reduce Food Waste in Your Community</h1>
+        <p>Discover tips and resources to minimize food waste and make a positive impact on your environment and community.</p>
+        </div>
+
+        <section class="why-reduce-waste">
+            <h2 style="text-align: center;">Why Reducing Food Waste Matters</h2>
+            <p>One-third of all food produced is wasted. Reducing food waste helps save money, reduce hunger, and lower greenhouse gas emissions.</p>
+        </section>
+
+        <h2 style="text-align: center;">Practical Tips to Reduce Food Waste</h2>
+        <section class="tips_section">
+            <div class="tip">
+                <h3>Plan Your Meals</h3>
+                <p>Planning your meals ahead of time helps you buy only what you need, preventing excess food from being wasted.</p>
+            </div>
+            <div class="tip">
+                <h3>Store Food Properly</h3>
+                <p>Learn the best ways to store perishable items to prolong their freshness and prevent spoilage.</p>
+            </div>
+            <div class="tip">
+                <h3>Cook with Leftovers</h3>
+                <p>Transform leftovers into delicious meals. Check out our recipes for inspiration.</p>
+            </div>
+        </section>
+
+        <section class="videos">
+            <h2>Watch and Learn</h2>
+            <div class="video">
+                <h3>How to Reduce Food Waste in Your Kitchen</h3>
+                <iframe width="700" height="315" src="https://www.youtube.com/embed/8NCm2Q1rZOM?si=EGlOpqJT4o8uIaio" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section class="stories">
+            <h2>Making a Difference</h2>
+            <p>See how others in the community are reducing food waste.</p>
+            <!-- You can add testimonials or stories here -->
+        </section>
+      </div>
+
+      <div class="container notifications hidden">
+        <h1>Notifications Container</h1>
+         <div class="notifications-container">
+          <h3>Notifications</h3>
+          <ul id="notificationsList">
+            <!-- Notifications will be rendered here -->
+          </ul>
+          </div>
+      </div>
+
+      <div class="container support hidden">
+        <h1>Support</h1>
+        <form action="/support" method="POST" class="supportForm">
+          <div class="formGroup">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="sendBtn">Send Message</button>
+        </form>
+      </div>
+
+      <div class="container leaderboard hidden">
+        <h1>Leaderboard Container</h1>
+        <ul id="leaderboardList"></ul>
+      </div>
+
+      <div class="container profile hidden">
+        <h1>Profile Container</h1>
+        <form action="/bizprofile/update" method="POST" class="bizProfileForm">
+          <div class="formGroup">
+            <label for="name">Business Name</label>
+            <input type="text" id="name" name="name" value="{{business.name}}" required>
+          </div>
+
+          <div class="formGroup">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="{{business.email}}" required>
+          </div>
+
+          <div class="formGroup">
+            <label for="phone_number">Phone Number</label>
+            <input type="text" id="phone_number" name="phone_number" value="{{business.phone_number}}">
+          </div>
+
+          <div class="formGroup">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" value="{{business.location}}">
+          </div>
+
+          <button type="submit" class="saveBtn">Save Changes</button>
+        </form>
+      </div>
+
+      
+       <div class="container logout hidden">
+        <h1>Logging out...</h1>
+        <button type="button" id="logoutButton">Logout</button>
+      </div>
+      
+    </div>
+  </section>
+</section>
+
+<script src="js/dashboard.js"></script>
+<script>
+ async function fetchNotifications() {
+    try {
+      const response = await fetch('/api/notifications/biz');
+      if (response.ok) {
+        const notifications = await response.json();
+        const notificationsList = document.getElementById('notificationsList');
+        
+        // Clear any previous notifications
+        notificationsList.innerHTML = '';
+
+        // Display notifications
+        notifications.forEach(notification => {
+          const li = document.createElement('li');
+          li.textContent = notification.message;
+          if (!notification.is_read) {
+            li.classList.add('unread'); // Add a CSS class for unread notifications
+          }
+          notificationsList.appendChild(li);
+        });
+      } else {
+        console.error('Failed to fetch notifications');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
+  // Fetch notifications when the page loads
+  fetchNotifications();
+
+  async function fetchLeaderboard() {
+    try {
+      const response = await fetch('/api/leaderboard');
+      const leaderboard = await response.json();
+
+      const leaderboardList = document.getElementById('leaderboardList');
+      leaderboardList.innerHTML = '';
+
+      leaderboard.forEach(user => {
+        const li = document.createElement('li');
+        li.textContent = `${user.username} - ${user.claims_count} claims`;
+        leaderboardList.appendChild(li);
+      });
+    } catch (error) {
+      console.error('Error fetching leaderboard:', error);
+    }
+  }
+
+  // Fetch leaderboard when the page loads
+  fetchLeaderboard();
+
+
+  document.querySelector('[data-target="profile"]').addEventListener('click', function() {
+  document.querySelector('.container.profile').classList.remove('hidden');
+  // Hide other sections if necessary
+});
+
+//...............................................................................................................................................
+document.getElementById('logoutButton').addEventListener('click', async () => {
+  try {
+    const response = await fetch('/bizlogout', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      window.location.href = '/'; // Redirect to the homepage or login page after logout
+    } else {
+      const errorText = await response.text();
+      alert('Logout failed: ' + errorText);
+    }
+  } catch (error) {
+    console.error('Error during logout:', error);
+    alert('An unexpected error occurred.');
+  }
+});
+
+
+</script>
+
+<!--
+
+<script>
+  document.getElementById('logoutButton').addEventListener('click', async () => {
+    try {
+      const response = await fetch('/bizlogout', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        //alert('Logged out successfully!');
+        window.location.href = '/';
+        location.reload(); 
+      } 
+      else {
+        const errorText = await response.text();
+        alert('Logout failed: ' + errorText);
+      }
+    } catch (error) {
+      console.error('Error during logout:', error);
+      alert('An unexpected error occurred.');
+    }
+  });
+</script>
+
+-->

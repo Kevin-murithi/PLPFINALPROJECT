@@ -1,0 +1,103 @@
+<div class="formContainer" >
+  <form class="authForm" id="foodListingForm">
+    <div class="formTitle">
+      Food Donation Listing
+    </div>
+
+    <!-- Item Name Field -->
+    <div class="formField">
+        <label for="item_name">Item Name</label>
+        <input type="text" placeholder="Enter Food Item Name" name="item_name" id="item_name" required>
+    </div>
+
+    <!-- Category Field -->
+    <div class="formField">
+        <label for="category">Category</label>
+        <input type="text" placeholder="e.g., Dairy, Bakery, Produce" name="category" id="category" required>
+    </div>
+
+    <!-- Quantity Field -->
+    <div class="formField">
+        <label for="quantity">Quantity</label>
+        <input type="number" placeholder="Enter Quantity" name="quantity" id="quantity" min="1" required>
+    </div>
+
+    <!-- Expiration Date Field -->
+    <div class="formField">
+        <label for="expiration_date">Expiration Date</label>
+        <input type="date" name="expiration_date" id="expiration_date" required>
+    </div>
+
+    <!-- Pickup Time Field -->
+    <div class="formField">
+        <label for="pickup_time">Pickup Time</label>
+        <input type="text" placeholder="e.g., 9:00 AM - 5:00 PM" name="pickup_time" id="pickup_time" required>
+    </div>
+
+    <!-- Pickup Location Field -->
+    <div class="formField">
+        <label for="pickup_location">Pickup Location</label>
+        <input type="text" placeholder="Enter Pickup Location" name="pickup_location" id="pickup_location" required>
+    </div>
+
+    <!-- Special Notes Field -->
+    <div class="formField">
+        <label for="special_notes">Special Notes</label>
+        <textarea placeholder="Any additional notes or instructions" name="special_notes" id="special_notes" rows="4"></textarea>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="bizBtn">Submit Listing</button>
+  </form>
+</div>
+
+<script>
+  // Add an event listener to the food listing form
+  document.getElementById('foodListingForm').addEventListener('submit', async (e) => {
+    e.preventDefault(); // Prevent the default form submission behavior
+
+    // Get the form values
+    const item_name = document.getElementById('item_name').value;
+    const category = document.getElementById('category').value;
+    const quantity = document.getElementById('quantity').value;
+    const expiration_date = document.getElementById('expiration_date').value;
+    const pickup_time = document.getElementById('pickup_time').value;
+    const pickup_location = document.getElementById('pickup_location').value;
+    const special_notes = document.getElementById('special_notes').value;
+
+    // Build the request payload
+    const data = {
+      item_name,
+      category,
+      quantity,
+      expiration_date,
+      pickup_time,
+      pickup_location,
+      special_notes
+    };
+
+    try {
+      // Send a POST request to the API endpoint to create a food listing
+      const response = await fetch('/api/food/createFood', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data) // Send the data as JSON
+      });
+
+      // Check if the response is OK
+      if (response.ok) {
+        const result = await response.json();
+        alert(result.message); // Show a success message
+        window.location.reload(); // Reload the page or redirect if needed
+      } else {
+        const errorText = await response.json();
+        alert('Failed to create food listing: ' + errorText.message); // Show error message
+      }
+    } catch (error) {
+      console.error('Error during form submission:', error);
+      alert('An unexpected error occurred. Please try again later.');
+    }
+  });
+</script>

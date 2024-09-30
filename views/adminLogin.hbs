@@ -1,0 +1,68 @@
+{{>header}}
+
+<div class="formContainer">
+  <form class="authForm" id="loginForm">
+    <div class="formTitle">
+      Admin Login
+    </div>
+
+    <div class="formField">
+        <label for="email">Emaill</label>
+        <input type="email" placeholder="Email Address" name="email" id="email">
+    </div>
+
+    <div class="formField">
+        <label for="password">Password</label>
+        <input type="password" placeholder="Enter your Password" name="password" id="password">
+    </div>
+
+    <button type="submit" class="adminBtn">Login</button>
+  </form>
+</div>
+
+<script>
+  // Handle login form submission
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault(); // Prevent default form submission
+
+    // Get form input values
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // Validate form inputs
+    if (!email || !password) {
+      alert('Please fill in all fields.');
+      return;
+    }
+
+    // Prepare the data for submission
+    const data = {
+      email,
+      password
+    };
+
+    try {
+      const response = await fetch('/api/users/adminLogin', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+          // Redirect to the home page on successful login
+          window.location.href = '/dashboard'; 
+      } else {
+        alert(result.message || 'Login failed. Please check your credentials and try again.');
+      }
+    } 
+    catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again later.');
+    }
+});
+
+</script>

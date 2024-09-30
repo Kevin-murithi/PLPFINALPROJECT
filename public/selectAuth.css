@@ -1,0 +1,8 @@
+.selectAuth{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 900px;
+}

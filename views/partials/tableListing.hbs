@@ -1,0 +1,46 @@
+<div class="foodListings">
+
+
+<div class="listingTable bizTable">
+  <table>
+    <caption>Available food listings</caption>
+    <thead>
+      <tr>
+        <th>Item Name</th>
+        <th>Category</th>
+        <th>Expiration Date</th>
+        <th>Pickup Time</th>
+        <th>Pickup Location</th>
+        <th>Special Notes</th>
+        <th>Quantity</th>
+        <th>No. of claims</th>
+        <th>Claims exceeded</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each foodListings}}
+        <tr>
+          <td data-label="Item Name:">{{item_name}}</td>
+          <td data-label="Category:">{{category}}</td>
+          <td data-label="Expiration Date:">{{formatDate expiration_date}}</td>
+          <td data-label="Pickup Time:">{{pickup_time}}</td>
+          <td data-label="Pickup Location:">{{pickup_location}}</td>
+          <td data-label="Special Notes:">{{special_notes}}</td>
+          <td data-label="Quantity:">{{quantity}}</td>
+          <td data-label="No. of claims:">{{no_of_claims}}</td>
+          <td data-label="Claims exceeded:">{{max_exceeded}}</td>
+          <td data-label="Actions" class="actionBtns">
+            <form action="/remove/{{id}}" method="POST" onsubmit="return confirm('Are you sure you want to remove this listing?');">
+              <button type="submit" class="removeBtn">Remove</button>
+            </form>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+
+</div>

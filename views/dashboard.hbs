@@ -1,0 +1,404 @@
+<section class="dashContainer userDash">
+  <section class="sidebar">
+    <div class="sideLogo userLogo">
+      <span>Surplus</span>
+      <img src="images/menu.svg" alt="menu" class="menuOpen">
+      <img src="images/closeMenu.svg" alt="menu" class="menuClose hidden">
+    </div>
+
+    <div class="pageLinks userPages">
+      <button type="button" data-target="home">
+        <img src="images/dashboard.svg" alt="home">
+        <span>Dashboard</span>
+      </button>
+
+      <button type="button" data-target="tips">
+        <img src="images/tips.svg" alt="tips">
+        <span>Resources/Tips</span>
+      </button>
+
+      <button type="button" data-target="notifications">
+        <img src="images/notifications.svg" alt="notifications">
+        <span>Notifications</span>
+      </button>
+
+      <button type="button" data-target="support">
+        <img src="images/support.svg" alt="support">
+        <span>Support</span>
+      </button>
+
+      <button type="button" data-target="leaderboard">
+        <img src="images/leaderboard.svg" alt="leaderboard">
+        <span>Leaderboard</span>
+      </button>
+
+      <button type="button" data-target="profile">
+        <img src="images/profile.svg" alt="profile">
+        <span>Profile</span>
+      </button>
+
+      <button type="button" data-target="logout">
+        <img src="images/logout.svg" alt="logout">
+        <span>Logout</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="dashBody">
+    <div class="dashHead">
+      <div class="currentPage">
+        Dashboard
+      </div>
+
+      <div class="profileBox userProfileBox">
+        <img src="images/userProfile.svg" alt="userProfile">
+        <span>{{username}}</span>
+      </div>
+    </div>
+
+    <div class="dashMain userDashMain">
+      <div class="container home">
+        <div class="mainHomeContent">
+          <div class="welcomeUser">
+            <div class="welSect">
+              <div>
+                <h1>Welcome, {{username}}.</h1>
+                <p>This web application aims to reduce food waste at the community level by connecting local grocery stores, restaurants, and households with surplus food to individuals and organizations that can utilize it.</p>
+              </div>
+
+
+              <div>
+                <img src="images/community.png" alt="community">
+              </div>
+            </div>
+          </div>
+
+          <div class="foodListings">
+            <h2>Food Listings</h2>
+
+            <div class="listingTable">
+              {{#if foodListings.length}}
+              <p>Food Listings found: {{foodListings.length}}</p>
+                <table>
+                  <caption>Available food listings</caption>
+                  <thead>
+                    <tr>
+                      <th>Business</th>
+                      <th>Item Name</th>
+                      <th>Expiration Date</th>
+                      <th>Pickup Time</th>
+                      <th>Pickup Location</th>
+                      <th>Special Notes</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {{#each foodListings}}
+                      <tr>
+                        <td data-label="Business:">{{this.business_name}}</td>
+                        <td data-label="Item Name:">{{this.item_name}}</td>
+                        <td data-label="Expiration Date:">{{formatDate this.expiration_date}}</td>
+                        <td data-label="Pickup Time:">{{this.pickup_time}}</td>
+                        <td data-label="Pickup Location:">{{this.pickup_location}}</td>
+                        <td data-label="Special Notes:">{{this.special_notes}}</td>
+
+                        <!-- Check claim status and display appropriate action -->
+                        <td data-label="Action:" class="actionBtns">
+                          {{#if this.claimed}}
+                            <a href="/unclaim/{{this.id}}" class="unclaim">Unclaim</a>
+                          {{else}}
+                            <a href="/claim/{{this.id}}" class="claim">Claim</a>
+                          {{/if}}
+                        </td>
+                      </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+              {{else}}
+                <p>No food listings available.</p>
+              {{/if}}
+            </div>
+          </div>
+
+        </div>
+
+        <div class="profileColumn">
+          <div class="userDetails">
+            <img src="images/userTag.svg" alt="usertag">
+
+              <div class="userCredentials">
+                <div class="userName">{{username}}</div> <!-- Dynamic username -->
+                <div class="userEmail">{{email}}</div>   <!-- Dynamic email -->
+                <div class="userPhone">{{phone_number}}</div> <!-- Dynamic phone number -->
+              </div>
+
+          </div>
+
+          <div class="userActivity">
+              <h3>Activity</h3>
+
+                <div class="activityDetails">
+                  <div class="detail">
+                    <span>{{claimsCount}}</span>  <!-- Dynamic claims count -->
+                    <span>Claims</span>
+                  </div>
+
+                  <div class="detail">
+                    <span>{{wasteReduction}}%</span>  <!-- Dynamic waste reduction percentage -->
+                    <span>Waste Reduction</span>
+                  </div>
+                </div>
+
+
+            
+            </div>
+        </div>
+      </div>
+
+      <div class="container tips hidden">
+        <div class="banner">
+        <h1>Learn How to Reduce Food Waste in Your Community</h1>
+        <p>Discover tips and resources to minimize food waste and make a positive impact on your environment and community.</p>
+        </div>
+
+        <section class="why-reduce-waste">
+            <h2 style="text-align: center;">Why Reducing Food Waste Matters</h2>
+            <p>One-third of all food produced is wasted. Reducing food waste helps save money, reduce hunger, and lower greenhouse gas emissions.</p>
+        </section>
+
+        <h2 style="text-align: center;">Practical Tips to Reduce Food Waste</h2>
+        <section class="tips_section">
+            <div class="tip">
+                <h3>Plan Your Meals</h3>
+                <p>Planning your meals ahead of time helps you buy only what you need, preventing excess food from being wasted.</p>
+            </div>
+            <div class="tip">
+                <h3>Store Food Properly</h3>
+                <p>Learn the best ways to store perishable items to prolong their freshness and prevent spoilage.</p>
+            </div>
+            <div class="tip">
+                <h3>Cook with Leftovers</h3>
+                <p>Transform leftovers into delicious meals. Check out our recipes for inspiration.</p>
+            </div>
+        </section>
+
+        <section class="videos">
+            <h2>Watch and Learn</h2>
+            <div class="video">
+                <h3>How to Reduce Food Waste in Your Kitchen</h3>
+                <iframe width="700" height="315" src="https://www.youtube.com/embed/8NCm2Q1rZOM?si=EGlOpqJT4o8uIaio" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section class="stories">
+            <h2>Making a Difference</h2>
+            <p>See how others in the community are reducing food waste.</p>
+            <!-- You can add testimonials or stories here -->
+        </section>
+      </div>
+
+      <div class="container notifications hidden">
+        <h1>Notifications Container</h1>
+          <div class="notifications-container">
+          <h3>Notifications</h3>
+          <ul id="notificationsList">
+            <!-- Notifications will be rendered here -->
+          </ul>
+          </div>
+      </div>
+
+      <div class="container support hidden">
+        <h1>Support Container</h1>
+        <form id="supportForm">
+          <div>
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required>
+          </div>
+
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+
+          <button type="submit">Submit</button>
+        </form>
+        
+        <p id="supportMessage"></p>
+      </div>
+
+      <div class="container leaderboard hidden">
+        <h1>Leaderboard Container</h1>
+        <ul id="leaderboardList"></ul>
+      </div>
+
+      <div class="container profile hidden">
+        <h1>Profile Container</h1>
+          <form id="profileForm">
+            <div>
+              <label for="username">Username</label>
+              <input type="text" id="username" name="username" required>
+            </div>
+
+            <div>
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" disabled> <!-- Email cannot be edited -->
+            </div>
+
+            <div>
+              <label for="phone_number">Phone Number</label>
+              <input type="tel" id="phone_number" name="phone_number" required>
+            </div>
+
+            <button type="submit">Update Profile</button>
+          </form>
+
+          <p id="profileMessage"></p>
+      </div>
+
+      <div class="container logout hidden">
+        <h1>Logging out...</h1>
+            <button type="button" data-target="logout">
+              <img src="images/logout.svg" alt="logout">
+              <span>Logout</span>
+            </button>
+      </div>
+    </div>
+  </section>
+</section>
+
+<script src="js/dashboard.js"></script>
+<script>
+  async function fetchNotifications() {
+  try {
+    const response = await fetch('/api/notifications/User');
+    if (response.ok) {
+      const notifications = await response.json();
+      const notificationsList = document.getElementById('notificationsList');
+      
+      // Clear any previous notifications
+      notificationsList.innerHTML = '';
+
+      // Display notifications
+      notifications.forEach(notification => {
+        const li = document.createElement('li');
+        li.textContent = notification.message;
+        if (!notification.is_read) {
+          li.classList.add('unread'); // Add a CSS class for unread notifications
+        }
+        notificationsList.appendChild(li);
+      });
+    } else {
+      console.error('Failed to fetch notifications');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+// Fetch notifications when the page loads
+fetchNotifications();
+
+//.................................................................................................................................
+
+async function fetchLeaderboard() {
+    try {
+      const response = await fetch('/api/leaderboard');
+      const leaderboard = await response.json();
+
+      const leaderboardList = document.getElementById('leaderboardList');
+      leaderboardList.innerHTML = '';
+
+      leaderboard.forEach(user => {
+        const li = document.createElement('li');
+        li.textContent = `${user.username} - ${user.claims_count} claims`;
+        leaderboardList.appendChild(li);
+      });
+    } catch (error) {
+      console.error('Error fetching leaderboard:', error);
+    }
+  }
+
+  // Fetch leaderboard when the page loads
+  fetchLeaderboard();
+//.....................................................................................................................................
+
+document.getElementById('supportForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+
+    try {
+      const response = await fetch('/api/support/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ subject, message })
+      });
+
+      const result = await response.json();
+      document.getElementById('supportMessage').textContent = result.message;
+
+      if (response.ok) {
+        // Clear the form if the request was successful
+        document.getElementById('supportForm').reset();
+      }
+    } catch (error) {
+      document.getElementById('supportMessage').textContent = 'Failed to submit request.';
+      console.error('Error:', error);
+    }
+  });
+
+  //..................................................................................................................................
+
+  // Fetch user profile on page load
+  async function fetchUserProfile() {
+    try {
+      const response = await fetch('/api/users/profile');
+      const userProfile = await response.json();
+
+      document.getElementById('username').value = userProfile.username;
+      document.getElementById('email').value = userProfile.email;
+      document.getElementById('phone_number').value = userProfile.phone_number;
+    } catch (error) {
+      console.error('Error fetching profile:', error);
+    }
+  }
+
+  // Update user profile on form submission
+  document.getElementById('profileForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const phone_number = document.getElementById('phone_number').value;
+
+    try {
+      const response = await fetch('/api/users/profile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, phone_number })
+      });
+
+      const result = await response.json();
+      document.getElementById('profileMessage').textContent = result.message;
+    } catch (error) {
+      document.getElementById('profileMessage').textContent = 'Failed to update profile.';
+      console.error('Error:', error);
+    }
+  });
+
+  // Fetch the profile when the page loads
+  fetchUserProfile();
+
+//............................................................................................................................................
+
+document.querySelector('[data-target="logout"]').addEventListener('click', function() {
+    if (confirm('Are you sure you want to log out?')) {
+      window.location.href = '/logout';  // Redirect to the logout route
+    }
+  });
+</script>

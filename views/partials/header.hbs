@@ -1,0 +1,52 @@
+<header>
+  <div class="logo">
+      Surplus
+  </div>
+  <nav class="navbar">
+    <a href="/">Home</a>
+    <a href="#">About</a>
+
+    <div class="loginOpts">
+      <div class="startHeadLogin">
+        <span>Sign In</span>
+        <span class="dropSpan">
+            <img src="images/dropdown.svg" alt="dropdown" class="dropDownLogin">
+        </span>
+      </div>
+
+      <div class="authOptsLogin">
+        <a href="/signIn" class="authLink">
+          <span>Personal</span>
+          <img src="images/user.svg" alt="user">
+        </a>
+
+        <a href="/bizsignIn" class="authLink">
+          <span>Business</span>
+          <img src="images/business.svg" alt="business">
+        </a>
+
+        <a href="/adminSignIn" class="authLink">
+          <span>Admin</span>
+          <img src="images/shield.svg" alt="Admin">
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const startHeadLogin = document.querySelector('.startHeadLogin');
+  const dropDownLogin = document.querySelector('.dropDownLogin');
+  const authOptsLogin = document.querySelector('.authOptsLogin');
+  const navbar = document.querySelector('.navbar');
+  const header = document.querySelector('header');
+
+  function openLoginOpts() {
+    authOptsLogin.classList.toggle('reveal');
+    dropDownLogin.classList.toggle('rotate');
+    navbar.classList.toggle('active');
+    header.classList.toggle('activeHeader');
+  }
+
+  startHeadLogin.onclick = () => openLoginOpts();
+</script>
