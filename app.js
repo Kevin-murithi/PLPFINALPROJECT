@@ -76,6 +76,4 @@ const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
     console.log('Your app is finally complete!!!!');
-    console.log('System ready for deployment');
-    console.log('System ready for deployment');
 });
