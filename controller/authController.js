@@ -22,6 +22,7 @@ module.exports.register = async (req, res) => {
     const user_id = result.insertId; 
 
     // Create a session for the user using the insertId
+    req.session.user_id = user_id;
     req.session.user = {
       user_id: user_id,
       username: username,
