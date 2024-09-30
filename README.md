@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Community-Driven Food Waste Reduction Platform Documentation
 
     Project Title: "Community-Driven Food Waste Reduction Platform"
@@ -322,4 +323,7 @@ Business Guide
 Conclusion
 
 This documentation provides a comprehensive guide to using the community-driven food waste reduction platform for both users and businesses. By following these instructions, users can effectively navigate the system to create accounts, manage food listings, and utilize all available features.
+=======
+# PLPFINALPROJECT
+>>>>>>> 64a677880c4d7270a1ff84007b622763c79486e8
 
