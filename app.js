@@ -67,7 +67,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(authRoutes);
-app.use(cors());
+app.use(cors({
+  origin: 'https://plpfinalproject-production.up.railway.app', // Your frontend URL
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 app.use(morgan("dev"));
 
 
