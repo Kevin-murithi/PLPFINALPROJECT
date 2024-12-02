@@ -5,10 +5,10 @@ dotenv.config();
 
 // Database connection
 const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+    host: process.env.DB_HOST || 'plpfinalproject.railway.internal',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || 'mMOnuUptkGCApYyjsYCgmjhVstWuphVr',
+    database: process.env.DB_NAME || 'railway'
 });
 
 // Connect to MySQL database
