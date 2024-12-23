@@ -9,7 +9,9 @@ const db = mysql.createConnection({
     user: 'root',
     password: 'mMOnuUptkGCApYyjsYCgmjhVstWuphVr',
     database:'railway',
-    port: 3306
+    port: 3306,
+    connectTimeout: 10000,
+    
 });
 
 // Connect to MySQL database
