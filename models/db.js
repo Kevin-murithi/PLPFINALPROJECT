@@ -8,7 +8,8 @@ const db = mysql.createConnection({
     DB_HOST: 'junction.proxy.rlwy.net',
     DB_USER: 'root',
     DB_PASSWORD: 'mMOnuUptkGCApYyjsYCgmjhVstWuphVr',
-    DB_NAME:'railway'
+    DB_NAME:'railway',
+    DB_PORT: 8080
 });
 
 // Connect to MySQL database
