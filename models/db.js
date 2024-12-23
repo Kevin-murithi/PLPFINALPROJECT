@@ -5,7 +5,7 @@ dotenv.config();
 
 // Database connection
 const db = mysql.createConnection({
-    host: 'mysql.railway.internal',
+    host: 'junction.proxy.rlwy.net',
     user: 'root',
     password: 'mMOnuUptkGCApYyjsYCgmjhVstWuphVr',
     database:'railway'
