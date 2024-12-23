@@ -5,10 +5,10 @@ dotenv.config();
 
 // Database connection
 const db = mysql.createConnection({
-    host: 'junction.proxy.rlwy.net',
-    user: 'root',
-    password: 'mMOnuUptkGCApYyjsYCgmjhVstWuphVr',
-    database:'railway'
+    DB_HOST: 'junction.proxy.rlwy.net',
+    DB_USER: 'root',
+    DB_PASSWORD: 'mMOnuUptkGCApYyjsYCgmjhVstWuphVr',
+    DB_NAME:'railway'
 });
 
 // Connect to MySQL database
